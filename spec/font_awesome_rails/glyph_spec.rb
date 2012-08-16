@@ -10,6 +10,18 @@ describe FontAwesomeRails::Glyph do
       FontAwesomeRails::Glyph.new("foo").name.should == "foo"
     end
 
+    context "when style is given" do
+      it "sets the style" do
+        FontAwesomeRails::Glyph.new("foo", "fill:blue").style.should == "fill:blue"
+      end
+    end
+
+    context "when style is not given" do
+      it "sets the style to the default" do
+        FontAwesomeRails::Glyph.new("foo").style.should == "fill:black"
+      end
+    end
+
     it "sets the font" do
       FontAwesomeRails::Glyph.new("bar").font.should == font
     end
@@ -119,6 +131,7 @@ describe FontAwesomeRails::Glyph do
       glyph.stubs(:offset_y).returns(-1792)
       glyph.stubs(:height).returns(2048)
       glyph.stubs(:path).returns("M0 0z")
+      glyph.stubs(:style).returns("fill:blue")
     end
 
     it { should_not include "\n" }
@@ -155,24 +168,15 @@ describe FontAwesomeRails::Glyph do
 
         its(:name) { should == "path" }
         its(["d"]) { should == "M0 0z" }
+        its(["style"]) { should == "fill:blue" }
         its(["transform"]) { should == "rotate(180) scale(-1,1)" }
-
-        context "when a style is specified" do
-          let(:to_svg) { glyph.to_svg("fill:blue") }
-
-          its(["style"]) { should == "fill:blue" }
-        end
-
-        context "when a style is not specified" do
-          its(["style"]) { should == "fill:black" }
-        end
       end
     end
   end
 
   describe "#to_uri" do
     it "returns a data-uri for the SVG image" do
-      glyph.stubs(:to_svg).returns("some xml")
+      glyph.expects(:to_svg).returns("some xml")
       glyph.to_uri.should == "data:image/svg+xml,some%20xml"
     end
   end

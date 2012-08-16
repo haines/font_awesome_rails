@@ -1,9 +1,10 @@
 module FontAwesomeRails
   class Glyph
-    attr_accessor :font, :name
+    attr_accessor :font, :name, :style
 
-    def initialize(name)
+    def initialize(name, style=default_style)
       @name = name
+      @style = style
       @font = Font.instance
     end
 
@@ -41,12 +42,10 @@ module FontAwesomeRails
       -(ascent + height) / 2.0
     end
 
-    def to_svg(path_style=nil)
-      path_style ||= default_path_style
-
+    def to_svg
       Nokogiri::XML::Builder.new do |xml|
         xml.svg svg_attributes do
-          xml.path path_attributes.merge(style: path_style)
+          xml.path path_attributes
         end
       end.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION).strip
     end
@@ -74,11 +73,12 @@ module FontAwesomeRails
     def path_attributes
       {
         d: path,
+        style: style,
         transform: "rotate(180) scale(-1,1)"
       }
     end
 
-    def default_path_style
+    def default_style
       "fill:black"
     end
   end
