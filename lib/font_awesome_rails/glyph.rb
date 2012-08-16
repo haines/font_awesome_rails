@@ -2,9 +2,9 @@ module FontAwesomeRails
   class Glyph
     attr_accessor :font, :name
 
-    def initialize(font, name)
-      @font = font
+    def initialize(name)
       @name = name
+      @font = Font.instance
     end
 
     def icon

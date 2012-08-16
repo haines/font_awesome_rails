@@ -2,23 +2,22 @@ require "spec_helper"
 
 describe FontAwesomeRails::Glyph do
   subject { glyph }
-  let(:glyph) { FontAwesomeRails::Glyph.new(font, name) }
+  let(:glyph) { FontAwesomeRails::Glyph.new("some-icon") }
   let(:font) { FontAwesomeRails::Font.instance }
-  let(:name) { "some-icon" }
 
   describe ".new" do
     it "sets the name" do
-      FontAwesomeRails::Glyph.new(font, "foo").name.should == "foo"
+      FontAwesomeRails::Glyph.new("foo").name.should == "foo"
     end
 
     it "sets the font" do
-      FontAwesomeRails::Glyph.new(font, "bar").font.should == font
+      FontAwesomeRails::Glyph.new("bar").font.should == font
     end
   end
 
   describe "#icon" do
     it "returns the corresponding Icon" do
-      FontAwesomeRails::Icon.expects(:new).with(name).returns(:icon)
+      FontAwesomeRails::Icon.expects(:new).with("some-icon").returns(:icon)
       glyph.icon.should == :icon
     end
   end

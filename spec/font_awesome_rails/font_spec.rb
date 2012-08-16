@@ -27,11 +27,4 @@ describe FontAwesomeRails::Font do
       font.select(:some, :parameters)
     end
   end
-
-  describe "#glyph" do
-    it "creates a Glyph with the given name" do
-      FontAwesomeRails::Glyph.expects(:new).with(font, "some-icon")
-      font.glyph("some-icon")
-    end
-  end
 end

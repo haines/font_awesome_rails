@@ -4,10 +4,6 @@ module FontAwesomeRails
   class Font
     include Singleton
 
-    def glyph(name)
-      Glyph.new self, name
-    end
-
     def select(*rules)
       svg.at_css(*rules)
     end
