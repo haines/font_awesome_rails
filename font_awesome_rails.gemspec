@@ -13,4 +13,10 @@ Gem::Specification.new do |gem|
   gem.name          = "font_awesome_rails"
   gem.require_paths = ["lib"]
   gem.version       = FontAwesomeRails::VERSION
+
+  gem.add_dependency 'sass', '>= 3.2.0'
+
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rspec', '>= 2.8.0'
+  gem.add_development_dependency 'mocha', '>= 0.12.0'
 end
