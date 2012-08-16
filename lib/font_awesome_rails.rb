@@ -10,6 +10,7 @@ require "font_awesome_rails/engine" if defined?(Rails)
 require "font_awesome_rails/icon"
 require "font_awesome_rails/font"
 require "font_awesome_rails/glyph"
+require "font_awesome_rails/sass_extensions"
 
 module FontAwesomeRails
   def self.root

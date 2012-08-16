@@ -15,6 +15,7 @@ Gem::Specification.new do |gem|
   gem.version       = FontAwesomeRails::VERSION
 
   gem.add_dependency 'sass', '>= 3.2.0'
+  gem.add_dependency 'activesupport', '>= 3.1.0'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec', '>= 2.8.0'
