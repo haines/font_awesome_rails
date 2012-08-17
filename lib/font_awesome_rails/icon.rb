@@ -24,14 +24,6 @@ module FontAwesomeRails
       "&#x#{hex_code};"
     end
 
-    def to_scss_placeholder
-      "%icon-#{name} { content: '#{to_css}'; }"
-    end
-
-    def to_scss_class
-      ".icon-#{name}:before { @extend %icon-#{name}; }"
-    end
-
     def self.all
       lookup_table.map {|k, v| new k}
     end

@@ -60,18 +60,6 @@ describe FontAwesomeRails::Icon do
     end
   end
 
-  describe "#to_scss_placeholder" do
-    it "returns a placeholder rule for a pseudoelement containing the icon" do
-      icon.to_scss_placeholder.should == "%icon-hamburger { content: '\\f00d'; }"
-    end
-  end
-
-  describe "#to_scss_class" do
-    it "returns a class rule to prepend the icon" do
-      icon.to_scss_class.should == ".icon-hamburger:before { @extend %icon-hamburger; }"
-    end
-  end
-
   describe ".all" do
     it "returns an array of Icons" do
       FontAwesomeRails::Icon.stubs(:lookup_table).returns({"hamburger" => "f00d", "linux" => "f055"})
