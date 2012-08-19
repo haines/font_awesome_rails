@@ -1,0 +1,28 @@
+@mixin icon($before, $after: false) {
+  @include icon-before($before);
+  @if $after { @include icon-after($after); }
+}
+
+@mixin icon-before($name) {
+  &:before {
+    @include -icon-pseudoelement($name);
+  }
+}
+
+@mixin icon-after($name) {
+  &:after {
+    @include -icon-pseudoelement($name);
+  }
+}
+
+@mixin -icon-pseudoelement($name) {
+  @extend %icon;
+  @extend %icon-#{$name};
+}
+
+@mixin icon-image($args...) {
+  background: {
+    image: url(icon-image($args...));
+    repeat: no-repeat;
+  }
+}
