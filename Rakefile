@@ -1,6 +1,6 @@
 #!/usr/bin/env rake
 require "bundler/gem_tasks"
-require "rspec/core/rake_task"
 
-RSpec::Core::RakeTask.new(:spec)
+Dir[File.expand_path("tasks/**/*.rake", File.dirname(__FILE__))].sort.each {|f| import f }
+
 task :default => :spec
