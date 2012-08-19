@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe FontAwesomeRails::SassExtensions::Functions do
+describe FontAwesome::SassExtensions::Functions do
   class EvaluationContext
     def self.declare(*args)
       declarations << args
@@ -10,7 +10,10 @@ describe FontAwesomeRails::SassExtensions::Functions do
       @declarations ||= []
     end
 
-    include FontAwesomeRails::SassExtensions::Functions
+    def assert_type(*args)
+    end
+
+    include FontAwesome::SassExtensions::Functions
   end
 
   let(:functions) { EvaluationContext.new }
@@ -26,19 +29,16 @@ describe FontAwesomeRails::SassExtensions::Functions do
   describe "icon-image($name)" do
     subject(:icon_image) { functions.icon_image(name) }
     let(:name) { Sass::Script::String.new("foo") }
+    let(:icon) { stub("Icon", to_uri: "uri") }
 
-    before do
-      FontAwesomeRails::Glyph.stubs(:new).returns(stub_everything)
-      functions.stubs(:assert_type)
-    end
+    before { FontAwesome::Icon.stubs(:new).with("foo").returns(icon) }
 
     it "requires that $name be a string" do
       functions.expects(:assert_type).with(name, :String)
       icon_image
     end
 
-    it "returns a data-uri containing an SVG rendering of the named icon" do
-      FontAwesomeRails::Glyph.expects(:new).with("foo", nil).returns(mock(to_uri: "uri"))
+    it "returns a data-uri representation of the icon" do
       icon_image.should == Sass::Script::String.new("uri")
     end
   end
@@ -47,24 +47,22 @@ describe FontAwesomeRails::SassExtensions::Functions do
     subject(:icon_image) { functions.icon_image(name, style) }
     let(:name) { Sass::Script::String.new("foo") }
     let(:style) { Sass::Script::String.new("fill:blue") }
+    let(:icon) { stub("Icon", :style= => nil, to_uri: "uri") }
 
-    before do
-      FontAwesomeRails::Glyph.stubs(:new).returns(stub_everything)
-      functions.stubs(:assert_type)
-    end
+    before { FontAwesome::Icon.stubs(:new).with("foo").returns(icon) }
 
-    it "requires that $name be a string" do
+    it "requires that $name and $style be strings" do
       functions.expects(:assert_type).with(name, :String)
-      icon_image
-    end
-
-    it "requires that $style be a string" do
       functions.expects(:assert_type).with(style, :String)
       icon_image
     end
 
-    it "returns a data-uri containing an SVG rendering of the named icon with the given style" do
-      FontAwesomeRails::Glyph.expects(:new).with("foo", "fill:blue").returns(mock(to_uri: "uri"))
+    it "sets the icon style" do
+      icon.expects(:style=).with("fill:blue")
+      icon_image
+    end
+
+    it "returns a data-uri representation of the icon" do
       icon_image.should == Sass::Script::String.new("uri")
     end
   end

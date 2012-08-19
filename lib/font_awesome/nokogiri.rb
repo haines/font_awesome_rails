@@ -1,4 +1,4 @@
-module FontAwesomeRails
+module FontAwesome
   module Nokogiri
     extend self
 

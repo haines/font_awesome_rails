@@ -1,16 +1,7 @@
 require "font_awesome_rails/version"
-
-begin
-  require "nokogiri"
-rescue LoadError
-  require "font_awesome_rails/nokogiri"
-end
-
 require "font_awesome_rails/engine" if defined?(Rails)
-require "font_awesome_rails/icon"
-require "font_awesome_rails/font"
-require "font_awesome_rails/glyph"
-require "font_awesome_rails/sass_extensions"
+
+require "font_awesome"
 
 module FontAwesomeRails
   def self.root

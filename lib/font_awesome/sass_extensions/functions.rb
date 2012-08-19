@@ -1,6 +1,6 @@
 require 'active_support/concern'
 
-module FontAwesomeRails
+module FontAwesome
   module SassExtensions
     module Functions
       extend ActiveSupport::Concern
@@ -12,13 +12,14 @@ module FontAwesomeRails
 
       def icon_image(name, style=nil)
         assert_type name, :String
+        icon = Icon.new(name.value)
 
         unless style.nil?
           assert_type style, :String
-          style = style.value
+          icon.style = style.value
         end
 
-        Sass::Script::String.new Glyph.new(name.value, style).to_uri, :string
+        Sass::Script::String.new icon.to_uri, :string
       end
     end
   end
