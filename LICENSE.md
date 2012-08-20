@@ -1,7 +1,10 @@
-Copyright (c) 2012 Andrew Haines
-Fonts and original styles by Font Awesome - http://fortawesome.github.com/Font-Awesome
+Copyright &copy; 2012 Andrew Haines
 
-MIT License
+Fonts and "classic" styles are licensed under
+[CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) from
+[Font Awesome](http://fortawesome.github.com/Font-Awesome).
+
+# MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
