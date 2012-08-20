@@ -21,7 +21,7 @@ class UpdateHexCodesTask < Task
   end
 
   def hex_code_class
-    open_file(hex_code_class_path) {|file| file.read }
+    open_file(hex_code_class_path)
   end
 
   def hex_code_class_path
@@ -29,6 +29,6 @@ class UpdateHexCodesTask < Task
   end
 
   def css
-    open_file("Font-Awesome/css/font-awesome.css") {|file| file.read }
+    open_file("Font-Awesome/css/font-awesome.css")
   end
 end

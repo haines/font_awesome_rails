@@ -1,22 +1,31 @@
+@import "styles";
+@import "icons";
+
 @mixin icon($before, $after: false) {
-  @include icon-before($before);
-  @if $after { @include icon-after($after); }
+  @include icon-before($before) { @content; }
+  @if $after {
+    @include icon-after($after) { @content; }
+  }
 }
 
 @mixin icon-before($name) {
-  &:before {
-    @include -icon-pseudoelement($name);
+  @extend %icon-before;
+  @include icon-before-style {
+    @include icon-content($name);
+    @content;
   }
 }
 
 @mixin icon-after($name) {
-  &:after {
-    @include -icon-pseudoelement($name);
+  @extend %icon-after;
+  @include icon-after-style {
+    @include icon-content($name);
+    @content;
   }
 }
 
-@mixin -icon-pseudoelement($name) {
-  @extend %icon;
+@mixin icon-content($name) {
+  @extend %icon-content;
   @extend %icon-#{$name};
 }
 
@@ -24,5 +33,26 @@
   background: {
     image: url(icon-image($args...));
     repeat: no-repeat;
+  }
+}
+
+@mixin icon-style {
+  @include icon-before-style {
+    @content;
+  }
+  @include icon-after-style {
+    @content;
+  }
+}
+
+@mixin icon-before-style {
+  &%icon-before:before {
+    @content;
+  }
+}
+
+@mixin icon-after-style {
+  &%icon-after:after {
+    @content;
   }
 }

@@ -1,10 +1,6 @@
 namespace :update do
-
-  desc "Generate sass rules"
-  task :sass => "sass:all"
-
-  namespace :sass do
-    task :all => [:placeholders, :classes]
+  task :sass do
+    require_relative "update_sass_task"
+    UpdateSassTask.new.run
   end
-
 end

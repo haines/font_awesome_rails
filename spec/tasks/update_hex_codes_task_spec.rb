@@ -5,14 +5,14 @@ describe UpdateHexCodesTask do
 
   describe "#hex_code_class" do
     it "returns the source code for FontAwesome::HexCode" do
-      task.expects(:open_file).with("lib/font_awesome/hex_code.rb").yields(mock{expects(:read)}).returns("source code")
+      task.expects(:open_file).with("lib/font_awesome/hex_code.rb").returns("source code")
       task.hex_code_class.should == "source code"
     end
   end
 
   describe "#css" do
     it "returns the Font Awesome css styles" do
-      task.expects(:open_file).with("Font-Awesome/css/font-awesome.css").yields(mock{expects(:read)}).returns("css rules")
+      task.expects(:open_file).with("Font-Awesome/css/font-awesome.css").returns("css rules")
       task.css.should == "css rules"
     end
   end

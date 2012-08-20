@@ -4,10 +4,10 @@ namespace :update do
   task :font => "font_awesome:download" do
     require "fileutils"
 
-    source = GemDir.expand_path("Font-Awesome/font")
-    destination = GemDir.expand_path("vendor/assets/font")
+    source = "Font-Awesome/font"
+    destination = "vendor/assets/font"
 
     puts "* Copying fonts to #{destination}"
-    FileUtils.cp_r "#{source}/.", destination
+    FileUtils.cp_r "#{GemDir.expand_path(source)}/.", GemDir.expand_path(destination)
   end
 end

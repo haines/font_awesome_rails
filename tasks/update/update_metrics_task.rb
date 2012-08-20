@@ -16,7 +16,7 @@ class UpdateMetricsTask < Task
   end
 
   def font_class
-    open_file(font_class_path) {|file| file.read }
+    open_file(font_class_path)
   end
 
   def font_class_path
