@@ -22,7 +22,7 @@
 %icon-large {
   @include icon-style {
     vertical-align: top;
-    font-size: 4/3em;
+    font-size: #{(4/3)}em;
   }
 }
 
