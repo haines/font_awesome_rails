@@ -6,7 +6,6 @@
 }
 
 @mixin icon-before($name) {
-  @extend %icon-before;
   @include icon-before-style {
     @include icon-content($name);
     @content;
@@ -14,7 +13,6 @@
 }
 
 @mixin icon-after($name) {
-  @extend %icon-after;
   @include icon-after-style {
     @include icon-content($name);
     @content;
@@ -23,7 +21,7 @@
 
 @mixin icon-content($name) {
   @extend %icon-content;
-  @extend %icon-#{$name};
+  content: icon-character($name);
 }
 
 @mixin icon-image($args...) {
@@ -43,16 +41,15 @@
 }
 
 @mixin icon-before-style {
-  &%icon-before:before {
+  &:before {
     @content;
   }
 }
 
 @mixin icon-after-style {
-  &%icon-after:after {
+  &:after {
     @content;
   }
 }
 
 @import "styles";
-@import "icons";

@@ -41,6 +41,10 @@ describe FontAwesome::SassExtensions::Functions do
     it "returns a data-uri representation of the icon" do
       icon_image.should == Sass::Script::String.new("uri")
     end
+
+    it "quotes the returned string" do
+      icon_image.type.should == :string
+    end
   end
 
   describe "icon-image($name, $style)" do
@@ -64,6 +68,35 @@ describe FontAwesome::SassExtensions::Functions do
 
     it "returns a data-uri representation of the icon" do
       icon_image.should == Sass::Script::String.new("uri")
+    end
+
+    it "quotes the returned string" do
+      icon_image.type.should == :string
+    end
+  end
+
+  it "declares icon-character($name)" do
+    EvaluationContext.declarations.should include [:icon_character, [:name]]
+  end
+
+  describe "icon-character($name)" do
+    subject(:icon_character) { functions.icon_character(name) }
+    let(:name) { Sass::Script::String.new("pizza") }
+    let(:hex_code) { stub("HexCode", to_css: "\\f00d") }
+
+    before { FontAwesome::HexCode.stubs(:new).with("pizza").returns(hex_code) }
+
+    it "requires that $name be a string" do
+      functions.expects(:assert_type).with(name, :String)
+      icon_character
+    end
+
+    it "returns the css-formatted hex code for the icon" do
+      icon_character.should == Sass::Script::String.new("\\f00d")
+    end
+
+    it "quotes the returned string" do
+      icon_character.type.should == :string
     end
   end
 end
