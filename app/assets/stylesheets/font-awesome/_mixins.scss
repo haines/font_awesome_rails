@@ -8,6 +8,7 @@
 @mixin icon-before($name) {
   @include icon-before-style {
     @include icon-content($name);
+    margin-right: 0.25em;
     @content;
   }
 }
@@ -15,6 +16,7 @@
 @mixin icon-after($name) {
   @include icon-after-style {
     @include icon-content($name);
+    margin-left: 0.25em;
     @content;
   }
 }
