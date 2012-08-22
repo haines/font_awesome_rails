@@ -6,10 +6,6 @@
   text-decoration: inherit;
 }
 
-%icon {
-  @extend %icon-before;
-}
-
 * {
   @include icon-before-style {
     margin-right: 0.25em;
