@@ -25,9 +25,11 @@
   }
 }
 
-.nav-tabs > li > a {
-  @include icon-before-style {
-    width: 1em;
+.nav-tabs, .dropdown-menu, .dropdown-submenu {
+  > li > a {
+    @include icon-before-style {
+      width: 1em;
+    }
   }
 }
 
