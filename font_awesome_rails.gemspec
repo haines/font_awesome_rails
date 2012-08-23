@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["andrew@haines.org.nz"]
   gem.description   = %q{Font Awesome for Rails}
   gem.summary       = %q{Brings the fantastic Font Awesome iconic font to the Rails asset pipeline, with a bunch of new Sass styles for semantic markup.}
-  gem.homepage      = "http://github.com/haines/font_awesome_rails"
+  gem.homepage      = "http://haines.github.com/font_awesome_rails/"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

@@ -44,16 +44,7 @@ Note that you need to `@import` it with Sass and not `*= require` it with Sprock
 
 ## Usage
 
-### Adding icons
-`@include` any of the following mixins to add icons to your elements:
-- `icon-before($name)`: prepend the named icon
-- `icon-after($name)`: append the named icon
-- `icon($before)`: alias for `icon-before`
-- `icon($before, $after)`: append and prepend the named icons
-
-Each of these mixins can optionally take a
-[content block](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#mixin-content)
-with styles to be applied to the icon.
+For usage examples, see the [project page](http://haines.github.com/font_awesome_rails/).
 
 
 ## Compatibility
